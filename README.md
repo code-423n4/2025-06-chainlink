@@ -185,6 +185,25 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 ## Main invariants
 
+### Access Controls 
+- After funding a Claim contract, CLR projects should not be able to halt, exit, or do anything harmful to the system later without the admin’s permission. 
+- Only Contract Admin can update configs, allowlist CLR Project Admins (Project Admins), start a refund, and schedule or cancel withdrawals. 
+- Only Project Admins can execute a scheduled withdrawal. 
+ 
+### Project Management 
+- Only allowlisted actors can deploy Claim contracts. 
+- Claim contracts can only be deployed and configured properly through the Factory contract
+
+### Claiming and Vesting 
+- Users can only claim unlocked tokens or if enabled, early claim a portion of the unlocked tokens. 
+- Tokens vest according to the schedule (unlock duration, delay, etc.) 
+- CLR projects can withdraw only the allowed/available amount. 
+- Token amount validation calculation does not under/overflow. 
+ 
+### General 
+-  Contracts can’t be bricked. 
+ 
+### Specific Invariants 
 - More than the max token amount cannot be claimed 
 - The claimable and refundable amount never exceeds the token balance. 
 - The factory’s maxAvailableAmount never exceeds the token balance. 
@@ -192,13 +211,12 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
   - total refunded never exceeds the total allocated 
   - total withdrawn never exceeds the total deposited 
   - total withdrawn never exceeds the max possible withdrawn amount 
-  - total deposited and refunded amount always equals exceeds total allocated and 
-  withdrawn amount 
+  - total deposited and refunded amount always equals exceeds total allocated and withdrawn amount 
   - total refunded amount never exceeds total allocated to all seasons 
   - total withdrawn amount never exceeds total deposited amount 
   - total withdrawn amount never exceeds max possible withdrawable amount 
-  - total deposited and refunded amount always equals or exceeds total allocated 
-  and withdrawn amount 
+  - total deposited and refunded amount always equals or exceeds total allocated and withdrawn amount 
+
 
 ## All trusted roles in the protocol
 
