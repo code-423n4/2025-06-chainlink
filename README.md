@@ -34,11 +34,11 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 # Overview
 
-[Chainlink Rewards (CLR)](https://blog.chain.link/chainlink-build-program/) is a community engagement and rewards program designed to incentivize active participation in the Chainlink Network. The contracts in this document are designed to allow projects in the [Chainlink Build program](https://chain.link/economics/build-program) (CLR projects) to deploy an on-chain claim mechanism of their tokens for Chainlink ecosystem participants.
+[Chainlink Rewards (CLR)](https://blog.chain.link/chainlink-rewards-season-genesis) is a community engagement and rewards program designed to incentivize active participation in the Chainlink Network. The contracts in this document are designed to allow projects in the [Chainlink Build program](https://chain.link/economics/build-program) (CLR projects) to deploy an on-chain claim mechanism of their tokens for Chainlink ecosystem participants.
 
 ## Links
 
-- **Documentation:** [Chainlink Rewards Contracts Technical Design](https://github.com/code-423n4/2025-06-chainlink/ChainlinkRewardsContractsTechnicalDesign.pdf)
+- **Documentation:** [Chainlink Rewards Contracts Technical Design](https://github.com/code-423n4/2025-06-chainlink/docs/ChainlinkRewardsContractsTechnicalDesign.pdf)
 - **Website:** [chain.link](https://chain.link/)
 - **X/Twitter:** [@chainlink](https://twitter.com/chainlink)
 
