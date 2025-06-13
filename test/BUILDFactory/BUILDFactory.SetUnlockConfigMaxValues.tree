@@ -1,0 +1,22 @@
+BUILDFactoryUnlockConfigMaxValuesTest
+├── when the caller does not have the DEFAULT_ADMIN_ROLE
+│   └── it should revert
+└── when the caller has the DEFAULT_ADMIN_ROLE 
+    └── when the max unlock duration is zero
+    │    └── it should revert
+    └── when the max unlock delay is zero
+    │    └── it should revert
+    └── when the max unlock duration is the same as the current value
+    │   ├── it should not set the value
+    │   └── it should not emit a MaxUnlockDurationUpdated event
+    └── when the max unlock delay is the same as the current value
+    │   ├── it should not set the value
+    │   └── it should not emit a MaxUnlockDelayUpdated event
+    │   ├── it should not set the value
+    │   └── it should not emit a MaxUnlockDurationUpdated event
+    └── when the max unlock duration is different from the current value
+    │   ├── it should update the value
+    │   └── it should emit a MaxUnlockDurationUpdated event
+    └── when the max unlock delay is different from the current value
+        ├── it should update the value
+        └── it should emit a MaxUnlockDurationUpdated event

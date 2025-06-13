@@ -1,0 +1,39 @@
+BUILDClaimClaimTest
+├── when the contract is paused
+│   └── it should revert
+├── when the season is not configured
+│   └── it should revert
+├── when the project season is not configured
+│   └── it should revert
+├── when the user provided is zero address
+│   └── it should revert
+├── when the msg sender is not the user in merkle proof
+│   └── it should revert
+├── when the season unlock has not started
+│   └── it should revert
+├── when the tx origin is the user in merkle proof
+│   └── when the merkle proof is invalid
+│   │   └── it should revert
+│   └── when it's during the unlock delay
+│   │   └── it should transfer 0 tokens
+│   └── when the user has unlocked amount
+│   │   └── it should transfer tokens to the user
+│   ├── when the project season started refunding
+│   │   └── it should revert
+│   │   └── when the user has claimed
+│   │       └── it should transfer the unclaimed tokens to the user
+│   └── when the user has claimed amount
+│   │   └── it should transfer only the unclaimed tokens to the user
+│   └── when it's after the unlock delay and base token claim percentage is the max
+│   │   └── it should transfer all tokens to the user
+│   └── when the unlock ended for a season
+│   │   └── when the user already claimed all tokens for the season
+│   │       └── it should transfer 0 tokens
+│   └── when EOA claiming for multiple seasons
+│   │   └── it should transfer the sum of tokens to the user
+│   └── when Multisig claiming for a single project
+│   │   └── it should transfer tokens to the msig contract
+│   └── when Multisig claiming for multiple projects
+│       └── it should transfer the tokens from each project to the msig contract
+└── when the token tries to reenter
+    └── it should revert

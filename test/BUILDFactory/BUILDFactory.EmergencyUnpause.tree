@@ -1,0 +1,9 @@
+BUILDFactoryEmergencyUnpauseTest
+├── when the caller does not have the PAUSER_ROLE
+│   └── it should revert
+├── when not paused
+│   └── it should revert
+└── when paused and the caller has the PAUSER_ROLE
+    └── it should unpause the contract
+    └── it should not unpause claim contracts individually paused
+    └── it should unpause all claim contracts otherwise

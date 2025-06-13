@@ -1,0 +1,14 @@
+{
+  "SEPOLIA": [
+    {
+      "name": "Picasso Test Token 1",
+      "symbol": "PICASSO1",
+      "decimals": 18
+    },
+    {
+      "name": "Picasso Test Token 2",
+      "symbol": "PICASSO2",
+      "decimals": 6
+    }
+  ]
+}

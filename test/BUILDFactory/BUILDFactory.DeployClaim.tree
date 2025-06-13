@@ -1,0 +1,16 @@
+BUILDFactoryDeployClaimTest
+├── when the project is not allowlisted
+│   └── it should revert
+├── when the caller is not a project admin
+│   └── it should revert
+├── when a claim contract for the token is already deployed
+│   └── it should revert
+├── when the factory is paused
+│   └── it should revert
+├── when the factory is closed
+│   └── it should revert
+└── when the caller is the project admin
+    ├── it should deploy a new claim contract
+    ├── it should set the claim contract address for the project
+    ├── it should emit a ClaimDeployed event
+    └── it should return the new claim contract address

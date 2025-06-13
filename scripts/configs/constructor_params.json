@@ -1,0 +1,8 @@
+{
+  "SEPOLIA": {
+    "BUILDFactory": {
+      "max_unlock_duration": 126144000,
+      "max_unlock_delay": 126144000
+    }
+  }
+}

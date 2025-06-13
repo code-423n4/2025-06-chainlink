@@ -1,0 +1,11 @@
+BUILDFactorySetDelegateRegistryTest
+├── when the caller does not have the DEFAULT_ADMIN_ROLE
+│   └── it should revert
+└── when the caller has the DEFAULT_ADMIN_ROLE 
+    └── when the delegate registry is zero address
+    │   └── it should revert
+    └── when the delegate registry is the same as the current
+        └── it should not emit DelegateRegistryUpdated
+    └── when the delegate registry is updated
+        ├── it should set the delegate registry
+        └── it should emit a DelegateRegistryUpdated event

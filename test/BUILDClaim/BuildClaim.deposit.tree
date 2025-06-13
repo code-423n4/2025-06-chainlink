@@ -1,0 +1,18 @@
+BUILDClaimDepositTest
+├── when the caller is not the project admin
+│   └── it should revert
+├── when the caller is the project admin
+│   ├── when the caller has not approved sufficient allowance
+│   │   └── it should revert
+│   ├── when the contract is paused
+│   │   └── it should revert        
+│   ├── when the factory is closed
+│   │   └── it should revert    
+│   └── when the caller has approved sufficient allowance
+│       └── it should deposit the project tokens to the claim contract
+└── when the token tries to reenter
+│   └── it should revert
+└── when the token transfer is invalid
+│   └── it should revert
+└── when the token has fee on transfer
+    └── it should revert

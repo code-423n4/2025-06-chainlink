@@ -1,0 +1,13 @@
+BUILDFactoryAcceptDefaultAdminTransferTest
+├── when the caller is not the current pending admin
+│   └── it should revert
+└── when the caller is the current pending admin
+    ├── when there is no pending transfer
+    │   └── it should revert
+    └── when there is a pending transfer
+        ├── when the delay has not passed
+        │   └── it should revert
+        └── when the delay has passed
+            ├── it should update the default admin
+            ├── it should reset the pending transfer
+            └── it should emit RoleGranted event

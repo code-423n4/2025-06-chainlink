@@ -1,0 +1,9 @@
+BUILDFactoryBeginDefaultAdminTransferTest
+├── when the caller is not the current default admin
+│   └── it should revert
+└── when the caller is the current default admin
+    ├── when there is a pending transfer
+    │   ├── it should update the pending transfer
+    │   └── it should emit DefaultAdminTransferCanceled event
+    └── when there is no pending transfer
+        └── it should set the pending transfer

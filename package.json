@@ -1,0 +1,43 @@
+{
+  "name": "@chainlink/rewards",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Chainlink Labs",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./out",
+    "generateABIs": "forge compile && ts-node ./scripts/generateABIFiles.js && prettier --write ./scripts/abi/*.json",
+    "coverage": "FOUNDRY_PROFILE=coverage forge coverage --report lcov && genhtml lcov.info --branch-coverage --output-dir coverage --ignore-errors category,category,inconsistent && open coverage/index.html",
+    "format": "forge fmt src test scripts",
+    "gas": "FOUNDRY_PROFILE=gas forge snapshot -vvv",
+    "test:gas": "FOUNDRY_PROFILE=gas forge snapshot -vvv --check",
+    "test:scenarios": "forge test -vvv --match-contract Scenarios",
+    "test:solhint": "solhint --max-warnings 0 \"./**/*.sol\"",
+    "test:solidity": "forge test -vvv",
+    "test:scaffold": "bulloak scaffold -w ./**/*.tree && pnpm format",
+    "test:check": "bulloak check ./**/*.tree --fix && pnpm format"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.49.2",
+    "husky": "^9.0.11",
+    "lcov-parse": "^1.0.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.5.3",
+    "solhint": "5.0.2",
+    "solhint-plugin-chainlink-solidity": "git+https://github.com/smartcontractkit/chainlink-solhint-rules.git#v1.2.1",
+    "solhint-plugin-prettier": "^0.1.0"
+  },
+  "lint-staged": {
+    "*": "forge fmt src test scripts"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=11.3",
+    "pnpm": ">=10.10"
+  }
+}

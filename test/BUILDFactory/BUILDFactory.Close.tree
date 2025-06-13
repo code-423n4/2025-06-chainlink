@@ -1,0 +1,7 @@
+BUILDFactoryCloseTest
+├── when the caller does not have the DEFAULT_ADMIN_ROLE
+│   └── it should revert
+├── when already closed
+│   └── it should revert
+└── when open and the caller has the DEFAULT_ADMIN_ROLE 
+    └── it should close the factory

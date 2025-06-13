@@ -1,0 +1,10 @@
+BUILDFactoryExecuteWithdrawTest
+├── when the caller is not the registered claim contract
+│   └── it should revert
+└── when the caller is the registered claim contract
+    ├── when there is no scheduled withdrawal
+    │   └── it should revert
+    └── when there is a scheduled withdrawal
+        ├── it should update the total withdrawn
+        ├── it should reset the scheduled withdrawal
+        └── it should return the scheduled withdrawal and the updated total withdrawn

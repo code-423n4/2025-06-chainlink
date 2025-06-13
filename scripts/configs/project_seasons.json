@@ -1,0 +1,26 @@
+{
+  "SEPOLIA": [
+    {
+      "season_id": 1,
+      "project_index": 0,
+      "token_amount": 10000000000000000000,
+      "unlock_delay": 300,
+      "unlock_duration": 1800,
+      "base_token_claim_bps": 100,
+      "merkle_root": "0xfe4ab5fda815fdc35139dd5b0153b7fdb601c4226385794bc6033e3508c5e687",
+      "earlyVestRatioMinBps": 2000,
+      "earlyVestRatioMaxBps": 8000
+    },
+    {
+      "season_id": 1,
+      "project_index": 1,
+      "token_amount": 10000000000000000000,
+      "unlock_delay": 300,
+      "unlock_duration": 1,
+      "base_token_claim_bps": 10000,
+      "merkle_root": "0xfe4ab5fda815fdc35139dd5b0153b7fdb601c4226385794bc6033e3508c5e687",
+      "earlyVestRatioMinBps": 1000,
+      "earlyVestRatioMaxBps": 9000
+    }
+  ]
+}

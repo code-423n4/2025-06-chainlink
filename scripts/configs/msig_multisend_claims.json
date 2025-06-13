@@ -1,0 +1,24 @@
+{
+  "SEPOLIA": [
+    {
+      "contract": "0xf0dbA9159B8be35c1aba6c49FD685d4f3CfC2312",
+      "season_id": 1,
+      "max_token_amount": 5000000000000000000,
+      "salt": 1234,
+      "merkle_proof": [
+        "0xb40dfb25b38727e09842d108d72f52d92eb57e19c0463e0cab64751117525663"
+      ],
+      "isEarlyVest": false
+    },
+    {
+      "contract": "0xE4bAb6B7e4b300E3d1AF58309f81843bF538e436",
+      "season_id": 1,
+      "max_token_amount": 5000000000000000000,
+      "salt": 1234,
+      "merkle_proof": [
+        "0xb40dfb25b38727e09842d108d72f52d92eb57e19c0463e0cab64751117525663"
+      ],
+      "isEarlyVest": false
+    }
+  ]
+}

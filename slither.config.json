@@ -1,0 +1,4 @@
+{
+  "detectors_to_exclude": "conformance-to-solidity-naming-conventions,solc-version,block-timestamp,costly-operations-inside-a-loop,uninitialized-state-variables,unused-return,costly-loop,tx-origin",
+  "filter_paths": "(node_modules|lib|mocks)"
+}

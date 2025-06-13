@@ -1,0 +1,5 @@
+BUILDFactoryConstructorTest
+├── when the admin is set to the zero address
+│   └── it should revert
+└── when the admin is set to a nonZero address
+    └── it should grant the admin role to the admin address

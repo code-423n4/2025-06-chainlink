@@ -1,0 +1,7 @@
+BUILDFactoryReduceRefundableAmountTest
+├── when caller is not the registered claim contract
+│   └── it should revert
+├── when amount provided is invalid
+│   └── it should revert
+└── when a valid amount is provided
+    └── it should update the refundable amount

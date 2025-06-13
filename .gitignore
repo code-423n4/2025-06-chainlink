@@ -1,0 +1,39 @@
+# Compiler files
+cache/
+out/
+dist/
+docs/
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+# Dotenv file
+.env
+.envrc
+.env.*
+
+*.code-workspace
+
+node_modules
+.DS_Store
+
+# Foundry
+coverage
+lcov.info
+coverage.json
+
+# Foundry deployments
+broadcast/*
+
+.pnpm-debug.log
+
+nohup.out
+
+.vscode
+
+.idea
+
+# Merkle proof data
+*merkle-proof*.json

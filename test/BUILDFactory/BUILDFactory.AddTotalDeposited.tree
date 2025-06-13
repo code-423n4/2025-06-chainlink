@@ -1,0 +1,8 @@
+BUILDFactoryAddTotalDepositedTest
+├── when the caller is not the claim contract
+│   └── it should revert
+└── when the caller is the claim contract
+    ├── when an invalid amount is set
+    │   └── it should revert
+    └── it should add 1 to total deposited amount
+

@@ -1,0 +1,14 @@
+BUILDFactoryScheduleWithdrawTest
+├── when the caller is not factory admin
+│   └── it should revert
+└── when the caller is factory admin
+    └── when withdrawal recipient is zero address
+    │   └── it should revert
+    └── when withdrawal amount is zero
+    │   └── it should revert
+    └── when withdrawal amount exceeds the max available amount
+    │   └── it should revert
+    └── when there's an existing schedule
+    │   └── it should overwrite the existing withdrawal
+    └── when withdrawal params are valid
+        └── it should schedule a withdrawal

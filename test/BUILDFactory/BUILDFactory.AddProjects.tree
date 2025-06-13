@@ -1,0 +1,17 @@
+BUILDFactoryAddProjectsTest
+├── when the caller does not have the DEFAULT_ADMIN_ROLE
+│   └── it should revert
+├── when the factory is closed
+│    └── it should revert
+├── when added token is address_0
+│    └── it should revert
+├── when added token is not ERC20
+│    └── it should revert
+├── when project does not exist
+│   ├── it should add the project to the projects list
+│   ├── it should set the project admin address for the project
+│   └── it should emit a ProjectAddedOrAdminChanged event
+└── when project exists
+    ├── it should not modify the projects list
+    ├── it should update the project admin address for the project
+    └── it should emit a ProjectAddedOrAdminChanged event

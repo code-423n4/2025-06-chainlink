@@ -1,0 +1,7 @@
+BUILDFactoryGetRefundableAmountTest
+├── when no season has been configured
+│   └── it should return zero
+├── when a season has been configured
+│   └── it should return the amount allocated to the season
+└── when a user claims
+    └── it should return a decreased amount

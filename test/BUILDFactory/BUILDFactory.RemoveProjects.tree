@@ -1,0 +1,12 @@
+BUILDFactoryRemoveProjectsTest
+├── when the caller does not have the DEFAULT_ADMIN_ROLE
+│   └── it should revert
+└── when the caller has the DEFAULT_ADMIN_ROLE
+    ├── when the factory is closed
+    │   └── it should revert
+    ├── when the project has not been added
+    │   └── it should revert
+    └── when the project has been added
+        ├── it should remove the project from the projects list
+        ├── it should unset the project admin address for the project
+        └── it should emit a ProjectRemoved event

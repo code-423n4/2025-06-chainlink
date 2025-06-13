@@ -1,0 +1,7 @@
+@openzeppelin=lib/vendor/openzeppelin-solidity/v5.1.0
+@openzeppelin@5.2.0=lib/vendor/openzeppelin-solidity/v5.2.0
+@solmate=lib/vendor/solmate
+chainlink=lib/vendor/chainlink/v2.18.0
+forge-std=lib/vendor/forge-std/v1.9.4/src
+space-and-time=lib/vendor/space-and-time
+@delegatexyz=lib/vendor/delegatexyz

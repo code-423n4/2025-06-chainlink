@@ -1,0 +1,40 @@
+BUILDFactorySetProjectSeasonConfigTest
+├── when the caller is not factory admin
+│   └── it should revert
+└── when the caller is factory admin
+    ├── when the factory is closed
+    │   └── it should revert
+    └── when a season config is not set for the season
+    │   └── it should revert
+    ├── when the project is not added
+    │   └── it should revert
+    └── when a season already started unlocking
+    │   └── it should revert
+    └── when the project started refunding for the season
+    │   └── it should revert
+    └── when the unlock duration is zero
+    │   └── it should revert
+    └── when the unlock duration exceeds the max unlock duration
+    │   └── it should revert
+    └── when the unlock delay exceeds the max unlock delay
+    │   └── it should revert
+    └── when the token amount is zero
+    │   └── it should revert
+    └── when the token amount is greater than max uint248
+    │   └── it should revert
+    └── when the token amount exceeds the max available amount
+    │   └── it should revert
+    └── when the base token claim percentage is greater than 10000
+    │   └── it should revert
+    └── when the base token claim percentage is 10000 and unlock duration is greater than 1
+    │   └── it should revert
+    └── when the early claim min ratio is larger than the max ratio
+    │   └── it should revert
+    └── when the early claim max ratio is greater than 10000
+    │   └── it should revert
+    └── when the season config is set and params are valid
+        ├── it should set the project season config
+        ├── it should emit a ProjectSeasonConfigUpdated event
+        └── when the season config is updated
+            ├── it should update the project season config
+            └── it should correctly update the allocated token amount

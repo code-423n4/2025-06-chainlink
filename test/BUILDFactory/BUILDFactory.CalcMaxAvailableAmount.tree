@@ -1,0 +1,13 @@
+BUILDFactoryCalcMaxAvailableAmountTest
+├── when no deposits have been made
+│   └── it should return zero
+└── when a deposit has been made
+    └── it should return the total deposited amount as max available
+    └── when all tokens are withdrawn
+    │   └── it should return zero as max available
+    └── when tokens are allocated to a season
+        └── it should return the correct max available
+        └── when a refund has started
+            └── it should return the correct max available
+            └── when some tokens are withdrawn
+                └── it should return the correct max available

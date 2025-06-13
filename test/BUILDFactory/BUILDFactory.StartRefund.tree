@@ -1,0 +1,10 @@
+BUILDFactoryStartRefundTest
+├── when the caller does not have the DEFAULT_ADMIN_ROLE
+│   └── it should revert
+└── when the caller has the DEFAULT_ADMIN_ROLE
+    ├── when the project season does not exist
+    │   └── it should revert
+    ├── when the project season is refunding
+    │   └── it should revert
+    └── when the season is not in the refunding state
+        └── it should set the season to a refunding state

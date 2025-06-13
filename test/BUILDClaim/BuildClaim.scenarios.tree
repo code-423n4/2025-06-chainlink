@@ -1,0 +1,109 @@
+  // Bulloak generated scenarios to ensure user interaction coverage
+  // user patterns are defined with:
+  // n - no user interaction at all
+  // R<user> - regular claim
+  // E<user> - early claim
+  // s<number> - season
+  // and follow the format when time = (if present, add season)_(unlock 0%)_(unlock 50%)_(unlock 100%)_(if present, post refund)
+  // users can be: 1, 2, M (msig)
+  // example:
+  // user 1 regular claim at unlock0, unlock100
+  // user 2 regular claim at unlock0, early claims at unlock50
+  // scenario: s1_R1R2_E2_R1
+
+BUILDClaimScenarios
+├ when single user
+│   ├── when the claim pattern is _n_n_n
+│   │   └── it should do nothing and process no claims
+│   ├── when the claim pattern is _n_n_E1
+│   │   └── it should allow an early claim at unlock100 and ignore the early flag
+│   ├── when the claim pattern is _n_n_R1
+│   │   └── it should allow a regular claim at unlock100
+│   ├── when the claim pattern is _n_E1_n
+│   │   └── it should allow an early claim at unlock50
+│   ├── when the claim pattern is _n_E1_E1
+│   │   └── it should allow claim at unlock100 with 0 amount
+│   ├── when the claim pattern is _n_E1_R1
+│   │   └── it should allow an early claim at unlock50 and a regular claim at unlock100
+│   ├── when the claim pattern is _n_R1_n
+│   │   └── it should allow a regular claim at unlock50 only
+│   ├── when the claim pattern is _n_R1_E1
+│   │   └── it should allow a regular claim at unlock50 and treat unlock100 early flag as ignored
+│   ├── when the claim pattern is _n_R1_R1
+│   │   └── it should allow regular claims at unlock50 and unlock100
+│   ├── when the claim pattern is _E1_n_n
+│   │   └── it should allow an early claim at unlock0
+│   ├── when the claim pattern is _E1_n_E1
+│   │   └── it should allow an early claim at unlock0 and ignore the early flag at unlock100
+│   ├── when the claim pattern is _E1_n_R1
+│   │   └── it should allow an early claim at unlock0 and return 0 for regular claim at unlock100
+│   ├── when the claim pattern is _E1_E1_n
+│   │   └── it should revert at unlock50 because a second early claim is not allowed
+│   ├── when the claim pattern is _E1_E1_E1
+│   │   └── it should revert at unlock50 because a second early claim is not allowed, and early flag at unlock100 should be ignored
+│   ├── when the claim pattern is _E1_E1_R1
+│   │   └── it should revert at unlock50 because a second early claim is not allowed, and it should allow a regular claim at unlock100
+│   ├── when the claim pattern is _E1_R1_n
+│   │   └── it should allow an early claim at unlock0 and block the regular claim at unlock50
+│   ├── when the claim pattern is _E1_R1_E1
+│   │   └── it should allow an early claim at unlock0, ignore regular at unlock50, and ignore early flag at unlock100
+│   ├── when the claim pattern is _E1_R1_R1
+│   │   └── it should allow an early claim at unlock0 and ignore all claims afterward
+│   ├── when the claim pattern is _R1_n_n
+│   │   └── it should allow a regular claim at unlock0 with 0 claimed amount
+│   ├── when the claim pattern is _R1_n_E1
+│   │   └── it should allow a regular claim at unlock0, and ignore early claim flag at unlock100
+│   ├── when the claim pattern is _R1_n_R1
+│   │   └── it should allow regular claims at unlock0 and unlock100
+│   ├── when the claim pattern is _R1_E1_n
+│   │   └── it should allow a regular claim at unlock0 and an early claim at unlock50
+│   ├── when the claim pattern is _R1_E1_E1
+│   │   └── it should allow a regular claim at unlock0, early at unlock50, and ignore early flag on unlock100
+│   ├── when the claim pattern is _R1_E1_R1
+│   │   └── it should allow a regular claim at unlock0, early at unlock50, and a regular claim at unlock100
+│   ├── when the claim pattern is _R1_R1_n
+│   │   └── it should allow regular claims at unlock0 and unlock50
+│   ├── when the claim pattern is _R1_R1_E1
+│   │   └── it should allow regular claims at unlock0, unlock50, and ignore early flag at unlock100
+│   ├── when the claim pattern is _R1_R1_R1
+│   │   └── it should allow regular claims at all three slots
+│   ├── when the claim pattern is _n_n_R1 for multiple seasons
+│   │   └── it should allow regular claims
+│   ├── when the claim pattern is _R1E1_n_n
+│   │   └── it should allow both claims
+│   ├── when the claim pattern is _n_R1E1_n
+│   │   └── it should allow both claims
+│   ├── when the claim pattern is _n_n_R1E1
+│   │   └── it should allow both claims
+│   ├── when the claim pattern is _E1R1_n_n
+│   │   └── it should allow both claims
+│   ├── when the claim pattern is _n_E1R1_n
+│   │   └── it should allow both claims
+│   ├── when the claim pattern is _n_n_E1R1
+│   │   └── it should allow both claims
+│   ├── when the claim pattern is _n_R1E1_n and vest ratio is 0
+│   │   └── it should skip the early claim
+│   └── when the user attempts to claim after refunding has started
+│       └── it should revert
+├── when multi user
+│   ├── when the claim pattern is _n_E1R2_R1R2
+│   │   └── it should allow all claims
+│   ├── when the claim pattern is _n_E1R2_n
+│   │    └── it should properly track refundable amounts
+│   ├── when the claim pattern is _n_E1R2_n_R1R2RM
+│   │   └── it should allow claims after refund for USER_2
+│   ├── when the claim pattern is _R1R2RM_n_n and base token is 100
+│   │   └── it should allow for instant airdrop
+│   ├── when the claim pattern is _E1E2EM_n_n
+│   │   └── it should allow early claims for all users
+│   └── when the claim pattern is _E1E2EM_n_n ans base token is 100
+│       └── it should allow for instant airdrop regardless of early claim
+└── when multi user multi season
+    ├── when the claim pattern is s1_n_nR1R2RM and s2_n_n_R1R2RM
+    │   └── it should allow early claims for all seasons in single transaction per user
+    ├── when the claim pattern is s1_n_E1E2EM_n and s2_E1E2EM_n_n
+    │   └── it should allow early claims for all seasons in single transaction per user
+    ├── when the claim pattern is s1_n_n_E1E2EM and s2_n_E1E2EM_n
+    │   └── it should allow claims for all seasons in single transaction per user
+    └── when the claim pattern is s1_E1R2_R2_R2RM and s2_E1_E2_EM
+        └── it should allow all claims

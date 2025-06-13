@@ -1,0 +1,11 @@
+BUILDFactorySetSeasonUnlockStartTimeTest
+├── when the caller does not have the DEFAULT_ADMIN_ROLE
+│   └── it should revert
+└── when the caller has the DEFAULT_ADMIN_ROLE 
+    └── when the unlockStartsAt is in the past
+        └── it should revert
+    └── when the season has already unlocked
+        └── it should revert
+    └── when the unlockStartsAt is in the future
+        ├── it should set the season config
+        └── it should emit a SeasonUnlockStartTimeUpdated event

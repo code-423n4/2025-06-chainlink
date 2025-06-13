@@ -1,0 +1,11 @@
+BUILDFactoryGetTokenAmountsTest
+├── when no deposits have been made
+│   └── it should return zeros
+└── when a deposit has been made
+    └── it should return the increased total deposited amount
+    └── when all tokens are withdrawn
+    │   └── it should return the increased total withdrawn amount
+    └── when tokens are allocated to a season
+        └── it should return the increased total allocated to seasons amount
+        └── when a refund has started
+            └── it should return the increased total refunded amount

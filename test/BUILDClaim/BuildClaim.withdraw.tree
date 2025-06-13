@@ -1,0 +1,12 @@
+BUILDClaimWithdrawTest
+├── when the caller is not project admin
+│   └── it should revert
+├── when the caller is project admin
+│   └── when no withdrawal is scheduled
+│   │   └── it should revert
+│   ├── when withdrawal is scheduled
+│   │   └── it should withdraw
+│   └── when withdrawal is scheduled
+│       └── it should withdraw
+└── when the token tries to reenter
+    └── it should revert
