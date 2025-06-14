@@ -118,6 +118,7 @@ Users can one time only “early vest” and receive a portion of their unlocked
 > $minRatio:$ the **minimum** Early Vest Ratio at $t=0$.
 > 
 > $maxRatio:$ the **maximum** Early Vest Ratio at $t=T$.
+> 
 > $$
 \begin{aligned}
 & R(t)=\operatorname{minRatio}+(\operatorname{maxRatio}-\operatorname{minRatio}) \times \frac{t}{T} . \\
