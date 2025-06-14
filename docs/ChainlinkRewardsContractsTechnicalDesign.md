@@ -119,13 +119,12 @@ Users can one time only “early vest” and receive a portion of their unlocked
 > 
 > $maxRatio:$ the **maximum** Early Vest Ratio at $t=T$.
 > 
-```math
-\
+> $$
+\begin{aligned}Add commentMore actions
 & R(t)=\operatorname{minRatio}+(\operatorname{maxRatio}-\operatorname{minRatio}) \times \frac{t}{T} . \\
 & \text { bonus unvested token amount } * R(t) * \frac{\text { user allocated amount }}{\text { total allocated amount }}
-\
+\end{aligned}
 $$
-```
 
 
 
