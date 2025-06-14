@@ -135,7 +135,7 @@ The diagram below illustrates all potential different stages and claimable amoun
 Seasons support linear unlock schedules with the following formula:
 
 > $$
-\text { Claimable tokens }=\text { bonus tokens } * \frac{\text { block.timestamp }^{-}\left(\text {time }_{\text {unlockstartsAt }}+\text { unlock delay }\right)}{\text { time }_{\text {unlockEndsat }}-\left(\text { time }_{\text {unlockstartsat }}+\text { unlock delay }\right)}+\text { base tokens }
+\text { Claimable tokens }=\text { bonus tokens } * \frac{\text { block.timestamp }^{-}\left(\text {time }_{\text {unlockstartsAt }}+\text { unlock delay }\right)}{\text { time }_{\text {unlockEndsAt }}-\left(\text { time }_{\text {unlockstartsAt }}+\text { unlock delay }\right)}+\text { base tokens }
 $$
 
  
