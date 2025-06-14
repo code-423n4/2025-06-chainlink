@@ -98,7 +98,7 @@ Tokens can be rewarded to the users in 3 different manners:
 
 ### Instant-claim (Base tokens)
 
-Users can claim the instant-claim tokens as soon as the unlock delay is over. Each user’s amount is proportional to their share of the allocations to the project, instant claim token amount \* user allocated amounttotal allocated amount.  
+Users can claim the instant-claim tokens as soon as the unlock delay is over. Each user’s amount is proportional to their share of the allocations to the project, 
 
 > $$
 \text { instant claim token amount } * \frac{\text { user allocated amount }}{\text { total allocated amount }}
@@ -106,7 +106,7 @@ $$
 
 ### Unlock (Part of bonus tokens)
 * After the unlock delay (which can also be 0), the token can be linearly unlocked over a project-specific unlock period.  
-* Users get their share of the unlock tokens proportional to their allocated credits, i.e.,  bonus vested token amount \* user allocated amounttotal allocated amount.  
+* Users get their share of the unlock tokens proportional to their allocated credits, i.e.,  
 > $$
 \text { bonus vested token amount } * \frac{\text { user allocated amount }}{\text { total allocated amount }} 
 $$
@@ -138,7 +138,8 @@ Seasons support linear unlock schedules with the following formula:
 
 (Note: the formula is simplified and does not check if the unlock ended, loyalty tokens after unlock ended, etc.)
 
-As the first part of the formula shows, the unlock schedule applies to the bonus tokens.  
+As the first part of the formula shows, the unlock schedule applies to the bonus tokens. 
+ 
 The base tokens are “unlocked” immediately once the unlock delay is passed.
 
 The unlock start timestamp is the same for all Projects (BUILDClaims) for a season, whereas the unlock end timestamp, which equals unlock start time \+ unlock delay \+ unlock duration, and the total tokens may vary for different Projects. 
