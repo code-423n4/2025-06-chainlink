@@ -38,7 +38,9 @@ The system should permit a single `BUILDClaim` contract to be deployed for and a
 
 Merkle proofs required for executing claim operations will be available to users through the Chainlink front-end after a user or their delegate goes through off-chain validations (i.e. Terms of Service acceptance / signing, wallet sanction / delegation checks, etc.).
 
-It is presently possible for a user to make a claim on behalf of another by reusing their Merkle proof when a normal claim is performed without being delegated. We consider this acceptable behaviour. 
+We are aware that server-side validation can be circumvented by users that interact directly with our smart contract system and consider it desirable behaviour.
+
+It is presently possible for a user to make a claim on behalf of another by reusing their Merkle proof when a normal claim is performed without being delegated. We consider this acceptable behaviour as well. 
 
 ### Design Document Correlation
 
