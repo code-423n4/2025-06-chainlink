@@ -134,7 +134,11 @@ The team's largest concerns with the Chainlink Rewards S1 protocol are as follow
 
 - Are all access control modifiers implemented correctly and enforced as expected?
 - Are the role capabilities detailed within this document correctly restricted?
-- If a project goes rogue, can the administrative capabilities in the system be utilized to minimize the project's impact to the system?
+- If a project goes rogue, can the administrative capabilities in the system be utilized to minimize the project's impact to the system? Specifically, the capabilities we wish to have are:
+  - Pause of a particular `BUILDToken` through the `BUILDClaim` contract
+  - Cancellation of a project's withdrawal
+  - Removal of a project from the `BUILDClaim` factory
+  - Closure of the `BUILDClaim` factory
 
 ## Main invariants
 
