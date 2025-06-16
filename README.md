@@ -38,7 +38,7 @@ The system should permit a single `BUILDClaim` contract to be deployed for and a
 
 Merkle proofs required for executing claim operations will be available to users through the Chainlink front-end after a user or their delegate goes through off-chain validations (i.e. Terms of Service acceptance / signing, wallet sanction / delegation checks, etc.).
 
-We are aware that server-side validation can be circumvented by users that interact directly with our smart contract system and consider it desirable behaviour.
+Our server side validation is explicitly designed to gate access to the Merkle proofs.
 
 The user that triggers a normal claim operation is not validated in any capacity and may trigger a normal claim on behalf of any other user. We consider this acceptable behaviour as well. 
 
@@ -141,6 +141,8 @@ The team's largest concerns with the Chainlink Rewards S1 protocol are as follow
   - Cancellation of a project's withdrawal
   - Removal of a project from the `BUILDClaim` factory
   - Closure of the `BUILDClaim` factory
+  - Replacement of a project administrator by the factory administrator
+  - Scheduling of a withdrawal to a replaced project administrator address for recovery
 
 ## Main invariants
 
