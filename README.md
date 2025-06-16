@@ -40,7 +40,7 @@ Merkle proofs required for executing claim operations will be available to users
 
 We are aware that server-side validation can be circumvented by users that interact directly with our smart contract system and consider it desirable behaviour.
 
-It is presently possible for a user to make a claim on behalf of another by reusing their Merkle proof when a normal claim is performed without being delegated. We consider this acceptable behaviour as well. 
+The user that triggers a normal claim operation is not validated in any capacity and may trigger a normal claim on behalf of any other user. We consider this acceptable behaviour as well. 
 
 ### Design Document Correlation
 
