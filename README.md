@@ -109,7 +109,7 @@ Tokens may yield a `bool` to indicate successful execution of a transfer, may `r
 
 Tokens should be able to execute normal EIP-20 transfers under all circumstances, and submissions that would concern this capability (i.e. blacklists, pausability, transfers of `0`, etc.) are not considered in-scope.
 
-The system should be able to support tokens of varying decimal configurations as long as they are within sensible bounds (i.e. $0 \le decimals \le 18$) and miniscule value truncations **in favour of the protocol / at the expense of the user** are considered acceptable.
+The system should be able to support tokens of varying decimal configurations as long as they are within sensible bounds (i.e. $0 \lt decimals \le 18$) and minuscule value truncations **in favour of the protocol / at the expense of the user** are considered acceptable.
 
 #### EIP-165
 
@@ -232,7 +232,7 @@ The codebase utilizes the `forge` framework for compiling its contracts and exec
 
 ### Setup
 
-Once the above prerequisites have been succesfully installed, the following commands can be executed to setup the repository:
+Once the above prerequisites have been successfully installed, the following commands can be executed to setup the repository:
 
 ```bash!
 git clone https://github.com/code-423n4/2025-06-chainlink
@@ -263,7 +263,7 @@ pnpm test:solidity
 npm run test:solidity
 ```
 
-The tests may temporarily halt during its execution; this is normal and given adequate time they are expected to finish successfully. 
+The tests may temporarily halt during its execution; this is normal and given adequate time, they are expected to finish successfully. 
 
 On a Raspberry Pi 5 model B (`rev-1.1`), tests finished after `~53` minutes (`3200.91s`).
 
@@ -279,7 +279,7 @@ pnpm coverage
 npm run coverage
 ```
 
-Alternatively if you do not have `lcov` installed, the following `foundry` command can be utilized to generate the `lcov.info` file manually:
+Alternatively, if you do not have `lcov` installed, the following `foundry` command can be utilized to generate the `lcov.info` file manually:
 
 ```bash 
 FOUNDRY_PROFILE=coverage forge coverage --report lcov
