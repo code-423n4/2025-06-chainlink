@@ -152,7 +152,7 @@ contract BUILDFactory is IBUILDFactory, ITypeAndVersion, ManagedAccessControl {
       revert ClaimAlreadyExists(token, address(project.claim));
     }
 
-    BUILDClaim claim = BUILDClaim(address(new MockBUILDClaim(token)));
+    BUILDClaim claim = BUILDClaim(address(new MockBUILDClaim(token))); //@note - used for PoC
     project.claim = claim;
     emit ClaimDeployed(token, address(claim));
     return IBUILDClaim(claim);
@@ -432,12 +432,19 @@ contract BUILDFactory is IBUILDFactory, ITypeAndVersion, ManagedAccessControl {
       return 0;
     }
     // By definition tokenAmount is always greater than or equal to totalLoyaltyIneligible
+    // totalLoyaltyEligible - the total credits of all users that did not early claim
     uint256 totalLoyaltyEligible = tokenAmount - globalState.totalLoyaltyIneligible;
 
     // no loyalty eligible, entire loyalty pool is refundable
     if (totalLoyaltyEligible == 0) {
-      return globalState.totalLoyalty;
+      return globalState.totalLoyalty; //@audit - means everyone early claimed
     }
+
+    // penalty credits from early claims * credits of users that did not claim at all / the total
+    // credits of all users that did not early claim
+    //what if refundEligible is 0? ---> Means everyone has claimed at least once -> 0
+    // what if totalLoyalty is 0? ----> Noone early claimed -> above if will return
+    // globalState.totalLoyalty = 0
     return globalState.totalLoyalty.mulWadDown(refundEligible).divWadDown(totalLoyaltyEligible);
   }
 

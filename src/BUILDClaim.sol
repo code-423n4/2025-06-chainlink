@@ -17,7 +17,6 @@ import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {MerkleProof} from "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
-
 contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
   using SafeERC20 for IERC20;
   using FixedPointMathLib for uint256;
@@ -177,7 +176,7 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
     uint256 maxTokenAmount,
     bool isEarlyClaim,
     uint256 salt
-  ) internal virtual pure returns (bool) {
+  ) internal pure virtual returns (bool) {
     bytes32 leaf =
       keccak256(bytes.concat(keccak256(abi.encode(user, maxTokenAmount, isEarlyClaim, salt))));
     return MerkleProof.verify(proof, root, leaf);
@@ -200,7 +199,8 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
     UserState memory userState,
     UnlockState memory unlockState,
     uint256 maxTokenAmount
-  ) public pure returns (ClaimableState memory) { //@note: changed to public for testing
+  ) public pure returns (ClaimableState memory) {
+    //@note: changed to public for testing
     ClaimableState memory claimableState;
     claimableState.base =
       (maxTokenAmount * config.baseTokenClaimBps) / PERCENTAGE_BASIS_POINTS_DENOMINATOR;
@@ -216,8 +216,18 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
     // calculate share of loyalty pool to receive
     // The loyalty bonus is informative only in the unlock period, as it is not
     // claimable until the vesting is completed.
+
+    // how much 'shares' of the eligible for loyalty you have * totalLoyalty
+    // maxTokenAmount = 10
+    // config.tokenAmount - globalState.totalLoyaltyIneligible = 50k (there are only a few people
+    // that have early claimed)
+    // totalLoyalty = say 40
+    // 100e2 * 400e2 / 50 000e2 = 40_000e36 / 50_000e18 = 40_000_0000 / 50_000_00 = 4 / 5
+    // 40k * 1e12 / 50k * 1e 6 = 40k * 1e6 / 41k * 1e6
+    // 40_000USDT / 50_000USDT = 0.8 * 1e6 =
     claimableState.loyaltyBonus = maxTokenAmount * globalState.totalLoyalty
-      / (config.tokenAmount - globalState.totalLoyaltyIneligible);
+      / (config.tokenAmount - globalState.totalLoyaltyIneligible); //@audit -reverts if tokenAmount =
+      // totalLoyaltyIneligible
 
     if (unlockState.isUnlocking) {
       // unlock period is in progress
@@ -234,6 +244,21 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
     }
 
     return claimableState;
+  }
+
+  function _calculateLoyaltyBonus(
+    uint256 maxProjectSeasonAmount,
+    uint256 userMaxTokenAmount,
+    uint256 totalLoyalty,
+    uint256 totalLoyaltyIneligible,
+    uint8 decimals
+  ) external pure returns (uint256) {
+    maxProjectSeasonAmount = maxProjectSeasonAmount * (10 ** decimals);
+    totalLoyalty = totalLoyalty * (10 ** decimals);
+    totalLoyaltyIneligible = totalLoyaltyIneligible * (10 ** decimals);
+    userMaxTokenAmount = userMaxTokenAmount * (10 ** decimals);
+
+    return userMaxTokenAmount * totalLoyalty / (maxProjectSeasonAmount - totalLoyaltyIneligible);
   }
 
   /// @notice Calculates the amount of bonus tokens that can be claimed early
@@ -269,7 +294,8 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
     uint256 unlockDelay,
     uint256 unlockDuration,
     uint256 targetTime
-  ) public pure returns (UnlockState memory) { //@note: changed to public for testing purpose
+  ) public pure returns (UnlockState memory) {
+    //@note: changed to public for testing purpose
     uint256 unlockDelayEndsAt = unlockStartsAt + unlockDelay;
     if (targetTime < unlockDelayEndsAt) {
       return UnlockState({isBeforeUnlock: true, isUnlocking: false, unlockElapsedDuration: 0});
@@ -321,12 +347,14 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
     ) {
       revert InvalidMerkleProof();
     }
+    //@audit - unlockState.isUnlocking = false ->
     if (unlockState.isUnlocking && param.isEarlyClaim && userState.hasEarlyClaimed) {
       revert InvalidEarlyClaim(user, param.seasonId);
     }
     if (userState.claimed == 0 && config.isRefunding) {
       // If the user hasn't claimed for this season before the refunding starts, the user will
       // be refunded their allocated credits but can no longer claim tokens
+      //@audit - can be front-run
       revert IBUILDFactory.ProjectSeasonIsRefunding(address(i_token), param.seasonId);
     }
   }
@@ -382,6 +410,8 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
         i_factory.reduceRefundableAmount(address(i_token), param.seasonId, param.maxTokenAmount);
       }
       uint256 toBeClaimed = claimableState.claimable;
+      //@audit - what if transaction gets delayed and this check fails even though isEarlyClaim =
+      // true
       if (unlockState.isUnlocking && param.isEarlyClaim) {
         globalState.totalLoyalty +=
           claimableState.bonus - claimableState.vested - claimableState.earlyVestableBonus;
@@ -472,16 +502,18 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
 }
 
 contract MockBUILDClaim is BUILDClaim {
-    constructor(address token) BUILDClaim(token) {}
+  constructor(
+    address token
+  ) BUILDClaim(token) {}
 
-    function _verifyMerkleProof(
-        bytes32,
-        address,
-        bytes32[] memory,
-        uint256,
-        bool,
-        uint256
-    ) internal pure override returns (bool) {
-        return true;
-    }
+  function _verifyMerkleProof(
+    bytes32,
+    address user,
+    bytes32[] memory,
+    uint256 maxTokenAmount,
+    bool,
+    uint256
+  ) internal pure override returns (bool) {
+    return true;
+  }
 }

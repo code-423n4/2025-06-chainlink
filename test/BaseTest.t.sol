@@ -559,6 +559,94 @@ contract BaseTest is Constants, Test, Utils {
     whenASeasonConfigIsSetForTheProject
   {}
 
+  // =============================================== POC SETUP
+  // =================================================
+
+  uint256 public constant POC_USER_EARLY_CLAIM_MAX_TOKEN_AMOUNT = 500e2;
+  uint256 public constant POC_USER_SMALL_REWARD_MAX_TOKEN_AMOUNT = 10e2;
+  uint256 public constant POC_USERS_WITH_SMALL_REWARDS_POOL_SIZE = 50_000;
+  uint256 public constant POC_TOKEN_AMOUNT_P1_S1 = POC_USERS_WITH_SMALL_REWARDS_POOL_SIZE
+    * POC_USER_SMALL_REWARD_MAX_TOKEN_AMOUNT + POC_USER_EARLY_CLAIM_MAX_TOKEN_AMOUNT; // = 50_000 *
+    // 10e2 + 500e2 = 500_000e2 + 500e2 = 500_500e2
+  uint16 internal constant POC_BASE_TOKEN_CLAIM_PERCENTAGE_P1_S1 = 500; // 5%
+  uint16 internal constant POC_EARLY_VEST_RATIO_MIN_P1_S1 = 500; // 5%
+  uint16 internal constant POC_EARLY_VEST_RATIO_MAX_P1_S1 = 9500; // 95%
+  ERC20 internal s_token_poc;
+  IBUILDClaim internal s_claim_poc;
+
+  modifier pocSetupSeason1() {
+    _pocSetupSeason1();
+    _;
+  }
+
+  function _pocSetupSeason1()
+    internal
+    whenASeasonConfigIsSetForTheSeason
+    poc__whenProjectAddedAndClaimDeployed
+    poc__WhenTokensAreDepositedForTheProject
+    poc__whenASeasonConfigIsSetForTheProject
+  {}
+
+  // user1 - (reuglar user) maxTokenAmount = 10e2;
+  // user2 -  base - 5%, earlyClaimBonus - 5%, vesting - 95%, maxTokenAmount = 500e2; --> loyalty =
+  // 450e2;
+  // user3 - (represents 50k regular users with 10e2) - maxTokenAmount = 500ke2;
+  // (10e2 * 450e2) / 500k e2 = 4500e2 / 500_000 = 450_000 / 500_000 = 0.9e2 ~ 0 -> loyalty pool of
+  // 450 can be claimed by noone
+  // a loyalty pool of up to 450e2 can be locked (since some of the users with small reward portions
+  // can't ever claim their loyalty)
+
+  modifier poc__whenProjectAddedAndClaimDeployed() {
+    _changePrank(PROJECT_ADMIN);
+    s_token_poc = new ERC20Token({name: PROJECT_NAME_1, symbol: PROJECT_NAME_1, decimals: 2}); //e.g.
+      // gUSD is with decimals(2)
+
+    vm.label(address(s_token_poc), "ProjectTokenPoC");
+
+    _changePrank(ADMIN);
+    IBUILDFactory.AddProjectParams[] memory input = new IBUILDFactory.AddProjectParams[](1);
+    input[0] = IBUILDFactory.AddProjectParams({token: address(s_token_poc), admin: PROJECT_ADMIN});
+    s_factory.addProjects(input);
+
+    _changePrank(PROJECT_ADMIN);
+    s_claim_poc = s_factory.deployClaim(address(s_token_poc));
+    vm.label(address(s_claim_poc), "BUILDClaimPoC");
+    _;
+  }
+
+  modifier poc__WhenTokensAreDepositedForTheProject() {
+    _changePrank(PROJECT_ADMIN);
+    uint256 totalTokenAmount = POC_TOKEN_AMOUNT_P1_S1;
+    s_token_poc.approve(address(s_claim_poc), totalTokenAmount);
+    s_claim_poc.deposit(totalTokenAmount);
+    _;
+  }
+
+  modifier poc__whenASeasonConfigIsSetForTheProject() {
+    _changePrank(ADMIN);
+    IBUILDFactory.SetProjectSeasonParams[] memory params =
+      new IBUILDFactory.SetProjectSeasonParams[](1);
+    params[0] = IBUILDFactory.SetProjectSeasonParams({
+      token: address(s_token_poc),
+      seasonId: SEASON_ID_S1,
+      config: IBUILDFactory.ProjectSeasonConfig({
+        tokenAmount: POC_TOKEN_AMOUNT_P1_S1,
+        baseTokenClaimBps: POC_BASE_TOKEN_CLAIM_PERCENTAGE_P1_S1,
+        unlockDelay: UNLOCK_DELAY_P1_S1,
+        unlockDuration: UNLOCK_DURATION_S1,
+        merkleRoot: MERKLE_ROOT_P1_S1,
+        earlyVestRatioMinBps: POC_EARLY_VEST_RATIO_MIN_P1_S1,
+        earlyVestRatioMaxBps: POC_EARLY_VEST_RATIO_MAX_P1_S1,
+        isRefunding: false
+      })
+    });
+    s_factory.setProjectSeasonConfig(params);
+    _;
+  }
+
+  // =============================================== END POC SETUP
+  // =================================================
+
   modifier whenSeason2IsSetup() {
     _setupSeason2();
     _;
