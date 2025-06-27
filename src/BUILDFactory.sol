@@ -5,7 +5,7 @@ import {IBUILDFactory} from "./interfaces/IBUILDFactory.sol";
 import {ITypeAndVersion} from "chainlink/contracts/src/v0.8/shared/interfaces/ITypeAndVersion.sol";
 
 import {IBUILDClaim} from "./interfaces/IBUILDClaim.sol";
-import {BUILDClaim, MockBUILDClaim} from "./BUILDClaim.sol";
+import {BUILDClaim} from "./BUILDClaim.sol";
 import {ManagedAccessControl} from "./ManagedAccessControl.sol";
 
 import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
@@ -152,7 +152,7 @@ contract BUILDFactory is IBUILDFactory, ITypeAndVersion, ManagedAccessControl {
       revert ClaimAlreadyExists(token, address(project.claim));
     }
 
-    BUILDClaim claim = BUILDClaim(address(new MockBUILDClaim(token))); //@note - used for PoC
+    BUILDClaim claim = new BUILDClaim(token);
     project.claim = claim;
     emit ClaimDeployed(token, address(claim));
     return IBUILDClaim(claim);

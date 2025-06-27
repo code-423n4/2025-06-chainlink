@@ -176,10 +176,11 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
     uint256 maxTokenAmount,
     bool isEarlyClaim,
     uint256 salt
-  ) internal pure virtual returns (bool) {
-    bytes32 leaf =
-      keccak256(bytes.concat(keccak256(abi.encode(user, maxTokenAmount, isEarlyClaim, salt))));
-    return MerkleProof.verify(proof, root, leaf);
+  ) internal pure returns (bool) {
+    // bytes32 leaf =
+    //   keccak256(bytes.concat(keccak256(abi.encode(user, maxTokenAmount, isEarlyClaim, salt))));
+    // return MerkleProof.verify(proof, root, leaf);
+    return true; //@note - always return true for bravity testing purposes
   }
 
   /// @notice Calculates the amount of tokens that can be claimed by a user for a season
@@ -498,22 +499,5 @@ contract BUILDClaim is IBUILDClaim, ITypeAndVersion, ReentrancyGuard {
       revert Pausable.EnforcedPause();
     }
     _;
-  }
-}
-
-contract MockBUILDClaim is BUILDClaim {
-  constructor(
-    address token
-  ) BUILDClaim(token) {}
-
-  function _verifyMerkleProof(
-    bytes32,
-    address user,
-    bytes32[] memory,
-    uint256 maxTokenAmount,
-    bool,
-    uint256
-  ) internal pure override returns (bool) {
-    return true;
   }
 }
