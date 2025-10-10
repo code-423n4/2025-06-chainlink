@@ -1,0 +1,171 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-PUBLIC / 🏁chainlink-june
+==============================================================
+
+[06/13/2025 10:58] cloudellie
+⏳New audit coming. Details dropping 🪂 soon!
+
+{Reactions}
+🔥 (23) 
+
+[06/16/2025 11:54] cloudellie (pinned)
+👋 Hello and welcome to the $200,000 in USDC **Chainlink Rewards **audit channel!
+
+📆 Audit dates: Monday, 16 June 2025 (20:00 UTC) - Wednesday, 16 July 2025 (20:00 UTC) (30 days).
+
+Please give a warm welcome to the Chainlink team, particularly @David | Chainlink (Pacific time zone), who will be available for questions via **private** thread. 
+
+🤖 **Documentation bot assistance:** 
+For general questions about the codebase, give our documentation bot a try, by tagging `@Docs Wolf` in a private thread and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources. 
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2025-06-chainlink-rewards
+
+{Reactions}
+🔥 (31) 🏛️ (4) 👍 (2) 
+
+[06/16/2025 11:54] cloudellie
+Pinned a message.
+
+
+[06/16/2025 20:04] cloudellie
+Wardens, our Docs Wolf documentation bot will be available in a few hours; we'll post an update once it's ready to answer questions.
+
+{Reactions}
+✅ (14) 
+
+[06/17/2025 06:11] cloudellie
+Docs Wolf is now available! See the pinned post for instructions.
+
+{Reactions}
+👍 (19) hearteyesrobot (3) 🫡 (4) 
+
+[06/18/2025 21:12] cloudellie
+@🐺Wardens Please note that we idenfied an error in the EIP compliance section of the audit repo `README`; it is in relation to the token decimals the system is meant to support. 
+
+[A PR has been merged](https://github.com/code-423n4/2025-06-chainlink/pull/4) to correct the error. As you can see in the PR, line 112 has been updated to `0 < decimals <= 18` (*not* `0 <= decimals <= 18` as it read originally).
+
+{Reactions}
+👍 (42) 
+
+[07/16/2025 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens The **Chainlink Rewards** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: 
+- The sponsor team and judge will review the findings over the next couple of weeks. 
+- As noted in the audit repo, all findings and the report from this audit will remain private to the Chainlink team; the report will not be published publicly. 
+- Wardens with the SR role will be able to view submissions and participate in post-judging QA as usual, but all finding details, judge decisions, etc. will remain confidential.
+- The audit's status can be viewed in-app by checking the [audit page](https://code4rena.com/audits/2025-06-chainlink-rewards).
+
+{Reactions}
+👍 (8) 🇳🇬 
+
+[08/01/2025 17:44] cloudellie
+Status update: Judging progress for this audit has been delayed a bit, due to some unexpected scheduling conflicts on the sponsor's side. We hope to post an update in the coming days, and anticipate that the PJQA period should start sometime next week.
+
+{Reactions}
+👍 (32) andbang (6) 🫡 (8) 👍🏻 (5) 🤷‍♂️ (10) 🫂 (5) 👨‍🦽 (4) 🇳🇬 (4) 😩 (4) ⏰ (3) 🔜 (3) 
+
+[08/12/2025 21:38] cloudellie
+Post-judging QA is now underway for this audit. As previously noted, all submissions will remain private, but aggregated results will be published as part of the award announcement.
+
+{Reactions}
+👍 (29) chefskiss (13) 🇳🇬 (10) 🥱 (5) 
+
+[08/19/2025 19:31] kartoonjoy
+🤑 🎉  Awards for **Chainlink Rewards**:
+
+$29,636.92 USDC » @MaxZuvex
+$28,965.72 USDC » @dan__vinci
+$28,965.72 USDC » @lye012
+$28,965.72 USDC » @serial-coder
+$22,797.63 USDC » @0x9527
+$22,797.63 USDC » @0xpetern
+$22,797.63 USDC » @Drynooo
+$3,554.05 USDC » @montecristo
+$2,369.84 USDC » @0xladboy
+$1,580.37 USDC » @AlexCzm
+$1.85 USDC » @newspace
+$1.42 USDC » @hgrano
+$1.42 USDC » @Riceee
+$1.42 USDC » @0xbrett8571
+$1.42 USDC » @0xpiken
+$1.42 USDC » @0xdice
+$1.42 USDC » @Ragnarok
+$1.42 USDC » @alexfilippov314
+$1.42 USDC » SafetyBytes (@mladenov, @yovchev_yoan)
+$1.42 USDC » @Hard1k
+$1.42 USDC » @tonyxx7
+$1.42 USDC » @dex246
+$1.42 USDC » @Kazan
+$1.42 USDC » @Kalogerone
+$1.42 USDC » @ether_sky
+$1.42 USDC » @ustas
+$1.42 USDC » @MakeIChop
+$1.42 USDC » @Flare☀
+$1.42 USDC » @0xneeloy
+$1.42 USDC » @Phaethon
+$1.42 USDC » @Topmark
+$1.42 USDC » @Alex Zhang
+$1.42 USDC » @Uno
+$1.42 USDC » @Ali
+$1.42 USDC » @Codex-Bugmenot
+$1.42 USDC » @greg
+$1.42 USDC » @0xV1BH4
+$1.42 USDC » NexusAudits (@cheatc0d3, @zxnnx)
+$1.42 USDC » @audinarey
+$1.42 USDC » @0xSolus
+$1.42 USDC » @Illoy Scizceneghposter
+$1.42 USDC » @IzuMan
+$1.42 USDC » @Rhaydden
+$1.42 USDC » redByte (@redtrama, @heeze)
+$1.42 USDC » @aysha
+$1.42 USDC » @Mukul
+$1.42 USDC » @0xAura
+$1.42 USDC » @Akxai
+$1.42 USDC » @samuraii77
+$1.42 USDC » @Cybrid
+$1.42 USDC » @Jinseo Kim
+$1.42 USDC » @Zeroom
+$1.42 USDC » @JN
+$1.42 USDC » @0x1982us
+$1.42 USDC » @carlitox477
+$1.42 USDC » @lian886
+$1.42 USDC » algiz (@vard, @ivalerievn)
+$1.42 USDC » @SpicyMeatball
+
+🏁 Findings summary
+--------------------------------------—
+0 High risk findings
+2 Med risk findings
+1584 wardens participated
+
+Top Gatherer: serial-coder, dan__vinci, random1106
+Top QA report: montecristo, ladboy233, AlexCzm
+
+Awards will be distributed on Ethereum within the next week. Congratulations all!  💸 💸 💸
+
+⚠️ Awardees, be sure to [complete your tax reporting info](https://docs.code4rena.com/awarding/incentive-model-and-awards/awarding-process#tax-information-for-code4rena-contributors-wardens-judges-etc) if you haven't already. This must be completed within 30 days (i.e. before Thursday, 18 September 2025) to receive your award distribution for this audit.
+
+🚨 @🐺Wardens Friendly reminder that as this was a private audit, all details regarding results and findings are confidential.
+
+We'll post the aggregate data to the leaderboard, but please no discussions regarding the content of findings whatsoever.
+
+{Reactions}
+c4wins (30) 🔥 (34) c4ship (16) 😂 (26) 📘 (2) ❤️ (2) 😭 (5) 🥀 (2) 🤮 
+
+[10/01/2025 16:15] C4
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted 10/10/2025 16:09. Please make sure to grab anything you might need before then.
+
+
+[10/09/2025 20:00] C4
+ℹ️ Reminder: this channel will be deleted after 24 hours.
+
+
+==============================================================
+Exported 12 message(s)
+==============================================================
